@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-buttons> 
+    <ion-title>Chat</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    {{ usuario }}, você está online!
+    <form #f="ngForm" (ngSubmit)="enviarMsg()">
+      <ion-item>
+        <ion-label floating>Mensagem</ion-label>
+        <ion-input type="text"name="mensagem" [(ngModel)]="mensagem" required></ion-input>
+        <button type="submit" ion-button item-right [disabled]="f.invalid">
+          <ion-icon name="md-send"></ion-icon>
+        </button>
+      </ion-item>
+    </form>
+
+    <ion-item >
+      <ion-card *ngFor="let item of lista | async" >
+        <ion-card-content>
+          <ion-item *ngIf="item.usuario != usuario">
+            <h2 item-left>{{item.usuario}}</h2>
+          </ion-item>
+          <ion-item *ngIf="item.usuario == usuario">
+            <h2 item-right>{{item.usuario}}</h2>
+          </ion-item>
+          <p>{{item.texto}}</p>
+          <ion-item>
+            <ion-note item-right>
+              {{item.data | date:'HH:mm'}}
+            </ion-note>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
