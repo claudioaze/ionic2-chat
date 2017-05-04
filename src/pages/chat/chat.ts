@@ -14,7 +14,10 @@ export class ChatPage {
   mensagem: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
-    this.lista=af.database.list("https://chat-494db.firebaseio.com/chat")
+
+    this.lista = af.database.list("https://chat-494db.firebaseio.com/chat")
+    
+    console.log('xxxxx', this.lista);
     this.usuario = this.navParams.get('usuario');
   }
 

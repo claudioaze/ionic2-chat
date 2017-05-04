@@ -1,6 +1,6 @@
-import { RegistroPage } from './../pages/registro/registro';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,9 +8,11 @@ import { AngularFireModule } from "angularfire2";
 
 import { ChatPage } from './../pages/chat/chat';
 import { LoginPage } from './../pages/login/login';
+import { RegistroPage } from './../pages/registro/registro';
 import { MyApp } from './app.component';
 
 import { AutenticacaoService } from './../service/autenticacao.service';
+import { UsuarioService } from './../service/usuario.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAKZuwZXpLnyFKA9MGTQSX1fjHeKgyPm80",
@@ -30,6 +32,7 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
@@ -44,6 +47,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     AutenticacaoService,
+    UsuarioService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

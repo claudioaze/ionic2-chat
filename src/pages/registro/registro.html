@@ -15,6 +15,11 @@
   <form [formGroup]="form"(ngSubmit)="cadastrar()">
     <ion-list>
       <ion-item>
+        <ion-label floating>Usuário</ion-label>
+        <ion-input type="usuario" formControlName="usuario"></ion-input>
+      </ion-item> 
+
+      <ion-item>
         <ion-label floating>Email</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>      

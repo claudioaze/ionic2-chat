@@ -4,6 +4,9 @@ import { FormControl, FormBuilder, FormGroup, Validators } from "@angular/forms"
 
 import { Validacao } from './../../validacao/validacao';
 import { AutenticacaoService } from './../../service/autenticacao.service';
+import { UsuarioService } from './../../service/usuario.service';
+
+import { Usuario } from './../../model/usuario.model';
 
 @Component({
   selector: 'page-registro',
@@ -18,7 +21,8 @@ export class RegistroPage {
     private formBuilder: FormBuilder,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private autenticacaoService: AutenticacaoService) {
+    private autenticacaoService: AutenticacaoService,
+    private usuarioService: UsuarioService) {
       this.criarForm();
   }
 
@@ -30,8 +34,9 @@ export class RegistroPage {
       '', Validators.compose([Validators.required, Validacao.mesmoValor(formControlSenha)]));
       
     this.form = this.formBuilder.group({
+      usuario: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validacao.email()])],
-      senha: formControlSenha,      
+      senha: formControlSenha,
       confirmaSenha: formControlConfirmaSenha
     });
     
@@ -44,8 +49,12 @@ export class RegistroPage {
     loading.present();
     this.autenticacaoService.registra(this.form.value.email, this.form.value.senha)
       .then(data => {
+        
+        const usuario: Usuario = {email: this.form.value.email, nome: this.form.value.usuario};
+        
+        this.usuarioService.postUsuario(usuario).subscribe();
         loading.dismiss();
-        })
+      })
       .catch(error => {
         loading.dismiss();
         const alert = this.alertCtrl.create({
