@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { UsuarioService } from "../../service/usuario.service";
+
+import { FirebaseApp } from "angularfire2";
+import { Usuario } from "../../model/usuario.model";
 
 @Component({
   selector: 'page-chat',
@@ -8,17 +12,21 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class ChatPage {
 
-  usuario: string;
+  usuario: Usuario;
 
   lista: FirebaseListObservable<any>;
   mensagem: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
+  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, private usuarioService: UsuarioService) {
 
     this.lista = af.database.list("https://chat-494db.firebaseio.com/chat")
     
-    console.log('xxxxx', this.lista);
-    this.usuario = this.navParams.get('usuario');
+    firebaseApp.auth().onAuthStateChanged(user => {
+      if (user) {
+        const usuario = usuarioService.getUserByEmail(user.email);
+        console.log('usu',usuario);        
+      }
+    });
   }
 
   enviarMsg() {
@@ -30,8 +38,7 @@ export class ChatPage {
 
     this.lista.push(msg).then(()=> {
       this.mensagem = "";
-      }
-    )
+    });
   }
 
 }

@@ -52,7 +52,7 @@ export class RegistroPage {
         
         const usuario: Usuario = {email: this.form.value.email, nome: this.form.value.usuario};
         
-        this.usuarioService.postUsuario(usuario).subscribe();
+        this.usuarioService.postUsuario(usuario);
         loading.dismiss();
       })
       .catch(error => {

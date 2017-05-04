@@ -11,8 +11,7 @@ export class LoginPage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
+  constructor(
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     private formBuilder: FormBuilder,
