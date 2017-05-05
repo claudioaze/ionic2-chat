@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 import { FormControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { Validacao } from './../../validacao/validacao';
@@ -16,8 +16,7 @@ export class RegistroPage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
+  constructor(
     private formBuilder: FormBuilder,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,

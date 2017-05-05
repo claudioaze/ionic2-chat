@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <ion-list>
-    {{ usuario }}, você está online!
+    {{ nomeUsuario }}, você está online!
     <form #f="ngForm" (ngSubmit)="enviarMsg()">
       <ion-item>
         <ion-label floating>Mensagem</ion-label>
@@ -27,11 +27,11 @@
     <ion-item >
       <ion-card *ngFor="let item of lista | async" >
         <ion-card-content>
-          <ion-item *ngIf="item.usuario != usuario">
+          <ion-item *ngIf="item.usuario != nomeUsuario">
             <h2 item-left>{{item.usuario}}</h2>
           </ion-item>
-          <ion-item *ngIf="item.usuario == usuario">
-            <h2 item-right>{{item.usuario}}</h2>
+          <ion-item *ngIf="item.usuario == nomeUsuario">
+            <h2 item-right>Você</h2>
           </ion-item>
           <p>{{item.texto}}</p>
           <ion-item>

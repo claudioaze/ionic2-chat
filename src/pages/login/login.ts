@@ -1,6 +1,6 @@
 import { AutenticacaoService } from './../../service/autenticacao.service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { AlertController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({

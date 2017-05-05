@@ -1,6 +1,5 @@
+import { AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 
 import firebase from 'firebase';
 
@@ -11,7 +10,7 @@ export class UsuarioService {
 
     private usuarioRef: any;
 
-    constructor(private http: Http) {
+    constructor(private angularFire: AngularFire) {
         this.usuarioRef = firebase.database().ref('usuario');
     }
 
@@ -19,7 +18,13 @@ export class UsuarioService {
         this.usuarioRef.push(usuario);
     }
 
-    getUserByEmail(email: string): Usuario {
-        return this.usuarioRef.orderByChild("email").equalTo(email).on('child_added', (response) => response.val());        
+    getUserByEmail(email: string):any {
+        return this.angularFire.database.list('usuario', {
+            query: {
+                orderByChild: 'email',
+                equalTo: email
+            }
+        });
     }
+
 }
