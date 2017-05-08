@@ -1,11 +1,14 @@
+import { ChatDiarioPage } from './../pages/chat-diario/chat-diario';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { DatePipe } from '@angular/common';
 import { AngularFireModule } from "angularfire2";
 
+import { RelatorioDiarioPage } from './../pages/relatorio-diario/relatorio-diario';
 import { ChatPage } from './../pages/chat/chat';
 import { LoginPage } from './../pages/login/login';
 import { RegistroPage } from './../pages/registro/registro';
@@ -13,6 +16,7 @@ import { MyApp } from './app.component';
 
 import { AutenticacaoService } from './../service/autenticacao.service';
 import { UsuarioService } from './../service/usuario.service';
+import { RelatorioDiarioService } from './../service/relatorio-diario.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAKZuwZXpLnyFKA9MGTQSX1fjHeKgyPm80",
@@ -28,7 +32,9 @@ export const firebaseConfig = {
     MyApp,
     LoginPage,
     ChatPage,
-    RegistroPage
+    RegistroPage,
+    RelatorioDiarioPage,
+    ChatDiarioPage
   ],
   imports: [
     BrowserModule,
@@ -41,13 +47,17 @@ export const firebaseConfig = {
     MyApp,
     LoginPage,
     ChatPage,
-    RegistroPage
+    RegistroPage,
+    RelatorioDiarioPage,
+    ChatDiarioPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AutenticacaoService,
     UsuarioService,
+    DatePipe,
+    RelatorioDiarioService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

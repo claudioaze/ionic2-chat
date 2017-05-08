@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-buttons> 
+    <ion-title>Relatório Diário</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item >
+    <ion-card *ngFor="let item of lista" (click)="visualizarChatDiario(item.chatDiario)">
+      <ion-card-content>
+        <ion-item>
+          <h2 item-left>{{item.data}}</h2>
+          <ion-badge item-right>{{item.chatDiario.length}}</ion-badge>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+</ion-content>

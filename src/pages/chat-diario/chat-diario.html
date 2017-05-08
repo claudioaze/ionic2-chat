@@ -6,26 +6,17 @@
           <ion-icon name="menu"></ion-icon>
         </button>
     </ion-buttons> 
-    <ion-title>Chat</ion-title>
+    <ion-title>Chat Diário</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+
 <ion-content padding>
   <ion-list>
-    {{ mensagemUsuarioConectado }}
-    <form #f="ngForm" (ngSubmit)="enviarMsg()">
-      <ion-item>
-        <ion-label floating>Mensagem</ion-label>
-        <ion-input type="text"name="mensagem" [(ngModel)]="mensagem" required></ion-input>
-        <button type="submit" ion-button item-right [disabled]="f.invalid">
-          <ion-icon name="md-send"></ion-icon>
-        </button>
-      </ion-item>
-    </form>
-
+    
     <ion-item >
-      <ion-card *ngFor="let item of lista | async" >
+      <ion-card *ngFor="let item of lista" >
         <ion-card-content>
           <ion-item *ngIf="item.usuario != nomeUsuario">
             <h2 item-left>{{item.usuario}}</h2>

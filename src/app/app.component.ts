@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from './../pages/login/login';
 import { RegistroPage } from './../pages/registro/registro';
 import { ChatPage } from './../pages/chat/chat';
+import { RelatorioDiarioPage } from './../pages/relatorio-diario/relatorio-diario';
 
 import { AutenticacaoService } from './../service/autenticacao.service';
 
@@ -19,6 +20,7 @@ export class MyApp {
   isAuthenticated: boolean;
   loginPage = LoginPage;
   registroPage = RegistroPage;
+  relatorioPage = RelatorioDiarioPage;
   @ViewChild('nav') nav: NavController;
 
   constructor(@Inject(FirebaseApp) firebaseApp: any,

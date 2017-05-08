@@ -12,6 +12,13 @@
                 <ion-icon name="book"></ion-icon>
                 Chat
             </button>
+
+            <button ion-item ion-left
+                (click)="carrega(relatorioPage)" 
+                *ngIf="isAuthenticated" >
+                <ion-icon name="book"></ion-icon>
+                Relatório Diário
+            </button>
             
             <button ion-item ion-left
                 (click)="carrega(loginPage)" 

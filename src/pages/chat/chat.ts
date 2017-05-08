@@ -1,31 +1,33 @@
 import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import firebase from 'firebase';
-
-import { Usuario } from "../../model/usuario.model";
 
 import { UsuarioService } from "../../service/usuario.service";
 
 @Component({
   selector: 'page-chat',
-  templateUrl: 'chat.html',
+  templateUrl: 'chat.html'
 })
+
 export class ChatPage {
 
-  nomeUsuario: Usuario;
+  nomeUsuario: string;
+  mensagemUsuarioConectado: string;
 
   lista: FirebaseListObservable<any>;
   mensagem: string;
 
   constructor(public af: AngularFire, private usuarioService: UsuarioService) {
 
-    this.lista = af.database.list("chat")
-    
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const usuario = usuarioService.getUserByEmail(user.email);
-        usuario.subscribe(u =>  this.nomeUsuario = u[0].nome);
-      }
+    this.lista = af.database.list("chat");
+
+    this.af.auth.subscribe(auth => {
+        if(auth) {
+            const usuario = usuarioService.getUserByEmail(auth.auth.email);
+            usuario.subscribe(u =>  {
+              this.nomeUsuario = u[0].nome;
+              this.mensagemUsuarioConectado = this.nomeUsuario+', você está online!'
+            });
+        }
     });
   }
 
@@ -42,6 +44,3 @@ export class ChatPage {
   }
 
 }
-
-
-
