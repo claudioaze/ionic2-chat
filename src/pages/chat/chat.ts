@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { UsuarioService } from "../../service/usuario.service";
+import { ChatService } from './../../service/chat.service';
 
 @Component({
   selector: 'page-chat',
@@ -16,9 +17,9 @@ export class ChatPage {
   lista: FirebaseListObservable<any>;
   mensagem: string;
 
-  constructor(public af: AngularFire, private usuarioService: UsuarioService) {
+  constructor(public af: AngularFire, private usuarioService: UsuarioService, private chatService: ChatService) {
 
-    this.lista = af.database.list("chat");
+    this.lista = chatService.getChat();
 
     this.af.auth.subscribe(auth => {
         if(auth) {

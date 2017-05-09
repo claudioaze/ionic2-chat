@@ -1,10 +1,11 @@
-import { RelatorioDiario } from './../../model/relatorio-diario.model';
+import { DatePipe } from '@angular/common';
 import { NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
 
+import { RelatorioDiario } from './../../model/relatorio-diario.model';
 import { Chat } from './../../model/chat.model';
 import { ChatDiarioPage } from './../chat-diario/chat-diario';
-import { RelatorioDiarioService } from './../../service/relatorio-diario.service';
+import { ChatService } from './../../service/chat.service';
 
 @Component({
   selector: 'page-relatorio-diario',
@@ -12,10 +13,32 @@ import { RelatorioDiarioService } from './../../service/relatorio-diario.service
 })
 export class RelatorioDiarioPage {
 
-  lista: Array<RelatorioDiario>;
+  private lista: Array<RelatorioDiario> = new Array<RelatorioDiario>();
 
-  constructor(public navCtrl: NavController, private relatorioDiarioService: RelatorioDiarioService) {
-    this.lista = relatorioDiarioService.getLista();
+  constructor(public navCtrl: NavController, private chatService: ChatService, private datePipe: DatePipe) {
+  }
+
+  ionViewWillEnter() {
+    this.chatService.getChat().subscribe((res) => {
+        
+        res.forEach(item => {
+          const data = this.datePipe.transform(new Date(item.data), 'dd/MM/yyyy');
+          
+          let element = this.lista.find(e => e.data == data);
+          
+          if(element) {
+              element.chatDiario.push(item);
+          } else {
+              let chatDiario: Array<Chat> = new Array<string>();
+              chatDiario.push(item);
+
+              let rd: RelatorioDiario = new RelatorioDiario(data, chatDiario);
+              this.lista.push(rd);
+          }
+
+      });
+
+    });
   }
 
   visualizarChatDiario(chatDiario: Chat) {

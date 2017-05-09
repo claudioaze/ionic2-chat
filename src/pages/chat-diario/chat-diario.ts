@@ -11,6 +11,9 @@ export class ChatDiarioPage {
   private lista: Array<Chat>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewWillEnter() {
     this.lista = this.navParams.get('chatDiario');
   }
 

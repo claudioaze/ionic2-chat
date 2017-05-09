@@ -1,4 +1,3 @@
-import { ChatDiarioPage } from './../pages/chat-diario/chat-diario';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -12,11 +11,12 @@ import { RelatorioDiarioPage } from './../pages/relatorio-diario/relatorio-diari
 import { ChatPage } from './../pages/chat/chat';
 import { LoginPage } from './../pages/login/login';
 import { RegistroPage } from './../pages/registro/registro';
+import { ChatDiarioPage } from './../pages/chat-diario/chat-diario';
 import { MyApp } from './app.component';
 
+import { ChatService } from './../service/chat.service';
 import { AutenticacaoService } from './../service/autenticacao.service';
 import { UsuarioService } from './../service/usuario.service';
-import { RelatorioDiarioService } from './../service/relatorio-diario.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAKZuwZXpLnyFKA9MGTQSX1fjHeKgyPm80",
@@ -57,7 +57,7 @@ export const firebaseConfig = {
     AutenticacaoService,
     UsuarioService,
     DatePipe,
-    RelatorioDiarioService,
+    ChatService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
