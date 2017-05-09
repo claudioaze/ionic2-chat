@@ -20,7 +20,7 @@ export class RelatorioDiarioService {
 
     getDatasChat() {
 
-        this.af.database.list('/chat').subscribe((res) => {
+        this.af.database.list('chat').subscribe((res) => {
         
             res.forEach(item => {
 

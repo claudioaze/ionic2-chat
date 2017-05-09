@@ -1,3 +1,4 @@
+import { RelatorioDiario } from './../../model/relatorio-diario.model';
 import { NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -11,16 +12,14 @@ import { RelatorioDiarioService } from './../../service/relatorio-diario.service
 })
 export class RelatorioDiarioPage {
 
-  lista: any;
+  lista: Array<RelatorioDiario>;
 
   constructor(public navCtrl: NavController, private relatorioDiarioService: RelatorioDiarioService) {
     this.lista = relatorioDiarioService.getLista();
   }
 
   visualizarChatDiario(chatDiario: Chat) {
-    console.log('xx', chatDiario);
     this.navCtrl.push(ChatDiarioPage, {chatDiario: chatDiario});
   }
-
 
 }

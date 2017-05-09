@@ -8,7 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ChatDiarioPage {
 
-  private lista: Array<Chat> = [];
+  private lista: Array<Chat>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.lista = this.navParams.get('chatDiario');

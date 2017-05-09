@@ -1,25 +1,23 @@
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Injectable } from '@angular/core';
-
-import firebase from 'firebase';
 
 import { Usuario } from './../model/usuario.model';
 
 @Injectable()
 export class UsuarioService {
 
-    private usuarioRef: any;
+    private usuarios: FirebaseListObservable<Usuario>;
 
-    constructor(private angularFire: AngularFire) {
-        this.usuarioRef = firebase.database().ref('usuario');
+    constructor(private af: AngularFire) {
+        this.usuarios = this.af.database.list('usuario');
     }
 
     postUsuario(usuario: Usuario) {
-        this.usuarioRef.push(usuario);
+        this.usuarios.push(usuario);
     }
 
     getUserByEmail(email: string):any {
-        return this.angularFire.database.list('usuario', {
+        return this.af.database.list('usuario', {
             query: {
                 orderByChild: 'email',
                 equalTo: email
