@@ -33,15 +33,14 @@ export class ChatPage {
   }
 
   enviarMsg() {
-    let msg = {
+    let mensagem = {
       usuario: this.nomeUsuario,
       texto: this.mensagem,
       data: new Date().toString()
     };
-
-    this.lista.push(msg).then(()=> {
-      this.mensagem = "";
-    });
+    
+    this.chatService.addMensagem(mensagem);
+    
   }
 
 }

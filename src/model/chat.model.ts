@@ -1,5 +1,5 @@
 export class Chat {
 
-    constructor(usuario: string, texto: string, data: string){}
+    constructor(data: string, mensagens: [{usuario: string, texto: string, data: string}]){}
     
 }
