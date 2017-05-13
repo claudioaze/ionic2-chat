@@ -1,5 +1,6 @@
+import { Mensagem } from './mensagem.model';
 export class Chat {
 
-    constructor(usuario: string, texto: string, data: string){}
+    constructor(data: string, mensagens: [Mensagem]){}
     
 }

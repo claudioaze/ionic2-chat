@@ -19,12 +19,12 @@ import { AutenticacaoService } from './../service/autenticacao.service';
 import { UsuarioService } from './../service/usuario.service';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAKZuwZXpLnyFKA9MGTQSX1fjHeKgyPm80",
-  authDomain: "chat-494db.firebaseapp.com",
-  databaseURL: "https://chat-494db.firebaseio.com",
-  projectId: "chat-494db",
-  storageBucket: "chat-494db.appspot.com",
-  messagingSenderId: "718602212942"
+  apiKey: "AIzaSyAFDwI3C7AkzFA4KKoIj6kDDqy0yKbxEQw",
+  authDomain: "batepapo-b30f6.firebaseapp.com",
+  databaseURL: "https://batepapo-b30f6.firebaseio.com",
+  projectId: "batepapo-b30f6",
+  storageBucket: "batepapo-b30f6.appspot.com",
+  messagingSenderId: "303760937343"
 }
 
 @NgModule({

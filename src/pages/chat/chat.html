@@ -14,7 +14,7 @@
 <ion-content padding>
   <ion-list>
     {{ mensagemUsuarioConectado }}
-    <form #f="ngForm" (ngSubmit)="enviarMsg()">
+    <form #f="ngForm" (ngSubmit)="enviarMensagem()">
       <ion-item>
         <ion-label floating>Mensagem</ion-label>
         <ion-input type="text"name="mensagem" [(ngModel)]="mensagem" required></ion-input>
@@ -25,22 +25,29 @@
     </form>
 
     <ion-item >
-      <ion-card *ngFor="let item of lista | async" >
-        <ion-card-content>
-          <ion-item *ngIf="item.usuario != nomeUsuario">
-            <h2 item-left>{{item.usuario}}</h2>
-          </ion-item>
-          <ion-item *ngIf="item.usuario == nomeUsuario">
-            <h2 item-right>Você</h2>
-          </ion-item>
-          <p>{{item.texto}}</p>
-          <ion-item>
-            <ion-note item-right>
-              {{item.data | date:'dd/MM/yyyy HH:mm:ss'}}
-            </ion-note>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
+      
+      <div *ngFor="let item of lista | async">
+
+        <h3>{{item.data}}</h3>
+
+        <ion-card *ngFor="let mensagem of item.mensagens" >
+
+          <ion-card-content>
+            <ion-item *ngIf="mensagem.usuario != nomeUsuario">
+              <h2 item-left>{{mensagem.usuario}}</h2>
+            </ion-item>
+            <ion-item *ngIf="mensagem.usuario == nomeUsuario">
+              <h2 item-right>Você</h2>
+            </ion-item>
+            <p>{{mensagem.texto}}</p>
+            <ion-item>
+              <ion-note item-right>
+                {{mensagem.data | date:'dd/MM/yyyy HH:mm:ss'}}
+              </ion-note>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

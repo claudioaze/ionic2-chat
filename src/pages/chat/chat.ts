@@ -1,3 +1,4 @@
+import { Mensagem } from './../../model/mensagem.model';
 import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
@@ -32,16 +33,15 @@ export class ChatPage {
     });
   }
 
-  enviarMsg() {
-    let msg = {
+  enviarMensagem() {
+    let mensagem: Mensagem = {
       usuario: this.nomeUsuario,
       texto: this.mensagem,
       data: new Date().toString()
     };
-
-    this.lista.push(msg).then(()=> {
-      this.mensagem = "";
-    });
+    
+    this.chatService.addMensagem(mensagem);
+    this.mensagem = "";
   }
 
 }

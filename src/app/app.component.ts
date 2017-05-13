@@ -57,8 +57,8 @@ export class MyApp {
 
   logout() {
     this.autenticacaoService.logout();
-    this.menuCtrl.close();
     this.nav.setRoot(LoginPage);
+    this.menuCtrl.close();
   }
 }
 
