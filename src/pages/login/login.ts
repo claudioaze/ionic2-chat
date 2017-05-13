@@ -1,3 +1,4 @@
+import { Validacao } from './../../validacao/validacao';
 import { AutenticacaoService } from './../../service/autenticacao.service';
 import { Component } from '@angular/core';
 import { AlertController, LoadingController } from 'ionic-angular';
@@ -21,7 +22,7 @@ export class LoginPage {
 
   private iniciarForm() {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validacao.email()])],
       senha: ['', Validators.required]
     });
   }
