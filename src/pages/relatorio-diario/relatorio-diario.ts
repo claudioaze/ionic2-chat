@@ -19,27 +19,6 @@ export class RelatorioDiarioPage {
   }
 
   ionViewWillEnter() {
-    // this.chatService.getChat().subscribe((res) => {
-        
-    //     res.forEach(item => {
-    //       const data = this.datePipe.transform(new Date(item.data), 'dd/MM/yyyy');
-          
-    //       let element = this.lista.find(e => e.data == data);
-          
-    //       if(element) {
-    //           element.chatDiario.push(item);
-    //       } else {
-    //           let chatDiario: Array<Chat> = new Array<string>();
-    //           chatDiario.push(item);
-
-    //           let rd: RelatorioDiario = new RelatorioDiario(data, chatDiario);
-    //           this.lista.push(rd);
-    //       }
-
-    //   });
-
-    // });
-
     this.lista = this.chatService.getChat();
   }
 

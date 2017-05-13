@@ -14,7 +14,7 @@
 <ion-content padding>
   <ion-list>
     {{ mensagemUsuarioConectado }}
-    <form #f="ngForm" (ngSubmit)="enviarMsg()">
+    <form #f="ngForm" (ngSubmit)="enviarMensagem()">
       <ion-item>
         <ion-label floating>Mensagem</ion-label>
         <ion-input type="text"name="mensagem" [(ngModel)]="mensagem" required></ion-input>
